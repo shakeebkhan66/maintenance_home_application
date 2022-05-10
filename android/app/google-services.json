@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1022629173267",
+    "project_id": "home-maintenance-system",
+    "storage_bucket": "home-maintenance-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022629173267:android:34f27e369e47ca6d8887e6",
+        "android_client_info": {
+          "package_name": "com.example.maintenance_home_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022629173267-unmo3h4ioc1ji3k8ber04bb887cc1srn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoRz2whxXxJTYzAPJXlzxRy2j1NzzhmhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022629173267-unmo3h4ioc1ji3k8ber04bb887cc1srn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
