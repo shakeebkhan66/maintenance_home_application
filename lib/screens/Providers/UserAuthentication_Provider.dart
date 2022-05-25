@@ -24,6 +24,7 @@ class UserAuthenticationProvider with ChangeNotifier {
 
 
   bool isLoad = false;
+  bool isEmailVerified = false;
 
   // Service Providers List
   final professionList =
@@ -87,18 +88,17 @@ class UserAuthenticationProvider with ChangeNotifier {
       Fluttertoast.showToast(msg: "Please Enter Your City Name");
     } else if(setLocation?.longitude == null){
       Fluttertoast.showToast(msg: "SetLocation is Empty");
-    } else {
+    } else if(imageSnap == null){
+      Fluttertoast.showToast(msg: "Please Upload Your Image First");
+    }else {
       isLoad = true;
       notifyListeners();
+
       try{
-        if (user!= null && user!.emailVerified) {
-          await user!.sendEmailVerification();
-        }
         auth.createUserWithEmailAndPassword(
             email: emailController.text,
             password: passwordController.text,
-        ).then((signedInUser) {
-          user!.sendEmailVerification();
+        ).then((signedInUser) async{
           FirebaseFirestore.instance.collection('Service Provider')
               .doc(signedInUser.user!.uid)
               .set({
@@ -114,11 +114,14 @@ class UserAuthenticationProvider with ChangeNotifier {
             'longitude': setLocation.longitude,
             'rating': 0.0,
             
-          }).then((signedInUser) {
+          });
+          if(user != null){
+            user!.sendEmailVerification();
+          }
             print("Success");
             Fluttertoast.showToast(msg: "Success");
             Fluttertoast.showToast(msg: "Verification Link Sent To Your Email");
-          });
+
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PSignIn()));
         });

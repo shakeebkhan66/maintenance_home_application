@@ -62,17 +62,15 @@ class _CustRegisterScreenState extends State<CustRegisterScreen> {
 
   // Register User
   Future register() async {
-    if (formKey.currentState!.validate()) {
+    if (formKey.currentState!.validate() && imageSnap != null) {
       FirebaseAuth auth = FirebaseAuth.instance;
-      User? user = await FirebaseAuth.instance.currentUser;
+      User? user = FirebaseAuth.instance.currentUser;
       try {
         auth.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text)
             .then((signedInUser) {
           if (user!= null) {
             user.sendEmailVerification();
-          } else if(imageSnap == null){
-            Fluttertoast.showToast(msg: "Please Provider Your Image");
           }
           FirebaseFirestore.instance.collection("Customers").doc(
               signedInUser.user?.uid).set({

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:maintenance_home_application/screens/Customers/cust_delete.dart';
 import 'package:maintenance_home_application/screens/Customers/cust_login.dart';
 import 'package:maintenance_home_application/screens/ServiceProvider/deleteAccount.dart';
 import 'package:maintenance_home_application/screens/ServiceProvider/resetPassword.dart';
@@ -69,7 +70,7 @@ class _CustAccountSettingState extends State<CustAccountSetting> {
                 alignment: Alignment.center,
                 child: GestureDetector(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> DeleteAccount()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> CustDeleteAccount()));
                   },
                   child: Container(
                     width: 280, height: 40,

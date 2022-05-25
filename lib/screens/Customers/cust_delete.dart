@@ -8,12 +8,12 @@ import 'package:maintenance_home_application/welcome_screen.dart';
 import '../Helper/helperfunction.dart';
 import '../Widgets/widget.dart';
 
-class DeleteAccount extends StatefulWidget {
+class CustDeleteAccount extends StatefulWidget {
   @override
-  _DeleteAccountState createState() => _DeleteAccountState();
+  _CustDeleteAccountState createState() => _CustDeleteAccountState();
 }
 
-class _DeleteAccountState extends State<DeleteAccount> {
+class _CustDeleteAccountState extends State<CustDeleteAccount> {
   /// Variables
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   TextEditingController userEmailController = new TextEditingController();
@@ -21,14 +21,14 @@ class _DeleteAccountState extends State<DeleteAccount> {
   // FirebaseFirestore _user = FirebaseFirestore.instance;
   // final FirebaseAuth _auth = FirebaseAuth.instance;
   // Map<String, dynamic>? userAccountMap;
-  bool _isObscure = true;
   User? user = FirebaseAuth.instance.currentUser;
+  bool _isObscure = true;
 
   /// Conform Choice
   // conformDelete(String email, String pwd) async {
   //   formKey.currentState!.validate()
   //       ? await _user
-  //       .collection("Service Provider")
+  //       .collection("Customers")
   //       .where("email", isEqualTo: userEmailController.text)
   //       .get()
   //       .then((result) async {
@@ -42,13 +42,13 @@ class _DeleteAccountState extends State<DeleteAccount> {
   //     /// Re Authenticate
   //     await _auth.currentUser
   //         ?.reauthenticateWithCredential(credential)
-  //         .then((value) => value.user!.delete())
+  //         .then((value) => value.user?.delete())
   //         .catchError((onError) => showToaster("Credentials Error"));
   //
   //     /// Delete user account details
   //     HelperFunction.saveUserLoggedInSharedPreference(false);
   //     DocumentReference userAccount =
-  //     _user.collection('Service Provider').doc(email);
+  //     _user.collection('Customers').doc(email);
   //     userAccount.delete();
   //
   //     ///
@@ -114,27 +114,27 @@ class _DeleteAccountState extends State<DeleteAccount> {
                                 ? null
                                 : "Valid email required";
                           },
-                        style: TextStyle(
-                            fontSize: 16.0, color: Colors.black),
-                        decoration: InputDecoration(
-                          focusedBorder:
-                          UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                          enabledBorder:
-                          UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-                          prefixIcon: Icon(Icons.email, color: Colors.black,),
-                          labelText: "Email",
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
+                          style: TextStyle(
+                              fontSize: 16.0, color: Colors.black),
+                          decoration: InputDecoration(
+                            focusedBorder:
+                            UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                            enabledBorder:
+                            UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                            prefixIcon: Icon(Icons.email, color: Colors.black,),
+                            labelText: "Email",
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
                       ),
                       SizedBox(height: 10.0),
                       // password
                       TextFormField(
                         style: TextStyle(
-                          fontSize: 15.0, color: Colors.black),
+                            fontSize: 15.0, color: Colors.black),
                         obscureText: _isObscure,
                         decoration: passwordViewInputDecoration(
                           'PASSWORD',
@@ -184,11 +184,11 @@ class _DeleteAccountState extends State<DeleteAccount> {
                     // onPressed: () => conformDelete(
                     //     userEmailController.text, userPasswordController.text),
                     onPressed: (){
-                      final docUser = FirebaseFirestore.instance.collection("Service Provider").doc(user!.uid);
+                      final docUser = FirebaseFirestore.instance.collection('Customers').doc(user!.uid);
                       setState(() {
                         docUser.delete();
                       });
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> WelcomeScreen()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
                     },
                     shape: StadiumBorder(),
                     label: Text("Conform Delete",

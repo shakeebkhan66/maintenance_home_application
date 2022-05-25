@@ -40,8 +40,8 @@ class _CustForgetPasswordPageState extends State<CustForgetPasswordPage>
     try {
       if (formKey.currentState!.validate()) {
         setState(() => isLoading = true);
-        // final FirebaseAuth _auth = FirebaseAuth.instance;
-        // await _auth.sendPasswordResetEmail(email: userEmailController.text);
+        final FirebaseAuth _auth = FirebaseAuth.instance;
+        await _auth.sendPasswordResetEmail(email: userEmailController.text);
         await auth.sendPasswordResetEmail(email: userEmailController.text);
         Navigator.of(context).pop();
         showToaster("Password sent to your email !");

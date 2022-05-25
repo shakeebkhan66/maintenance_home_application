@@ -69,7 +69,6 @@ class _PSignInState extends State<PSignIn> {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MyDrawer()));
       }
       else{
-        Navigator.of(context).pop();
        Fluttertoast.showToast(msg: "Please Verify Your account by clicking on link");
       }
       //
